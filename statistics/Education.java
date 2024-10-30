@@ -1,21 +1,24 @@
 
-public class Education {
-    int education;
+public class Education extends Statistics {
+    
+    public Education() {
+        super();
+    }
     
     public void educationUp(int value) {
-        
+        statUp(value);
     }
     
     public int getEducation() {
-        return education;
+        return getStat();
     }
     
     public void educationDown(int value) {
-        
+        statDown(value);
     }
     
-    public boolean dropOut() {
-        return false;
+    public boolean dropOut(boolean droppedOut) {
+        return droppedOut;
     }
     
     public boolean gradeTest(int value) {
