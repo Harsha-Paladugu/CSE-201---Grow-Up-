@@ -23,6 +23,5 @@ public class Age extends Statistics{
         } else {
             return false;
         }
-    }
-        
+    }      
 }
