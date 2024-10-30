@@ -3,15 +3,13 @@ public class Menu {
     private Money money;
     private Athletics athletics;
     private Education education;
-    private Karma karma;
 
     // Constructor to initialize all stats
-    public Menu(Age age, Money money, Athletics athletics, Education education, Karma karma) {
+    public Menu(Age age, Money money, Athletics athletics, Education education) {
         this.age = age;
         this.money = money;
         this.athletics = athletics;
         this.education = education;
-        this.karma = karma;
     }
 
     // Show all stats
@@ -21,7 +19,6 @@ public class Menu {
         showMoney();
         showAthletics();
         showEducation();
-        showKarma();
     }
 
     // Show age
@@ -42,10 +39,5 @@ public class Menu {
     // Show education
     public void showEducation() {
         System.out.println("Education: " + education.getEducation());
-    }
-
-    // Show karma
-    public void showKarma() {
-        System.out.println("Karma: " + karma.getKarma());
     }
 }
