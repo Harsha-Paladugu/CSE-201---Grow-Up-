@@ -1,4 +1,4 @@
-public abstract class Statistics {
+public class Statistics {
     
     protected int stat;
     
