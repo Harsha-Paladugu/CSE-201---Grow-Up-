@@ -14,11 +14,13 @@ public class Menu {
 
     // Show all stats
     public void showStats() {
+        System.out.println();
         System.out.println("All Stats:");
         showAge();
         showMoney();
         showAthletics();
         showEducation();
+        System.out.println();
     }
 
     // Show age
