@@ -1,4 +1,3 @@
-
 public class Age extends Statistics{
     
     public Age() {
