@@ -1,4 +1,3 @@
-
 public class Karma extends Statistics{
         
         public Karma() {
