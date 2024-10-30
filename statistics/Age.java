@@ -1,21 +1,29 @@
 
-public class Age {
-    int age;
+public class Age extends Statistics{
     
-    public void ageUp(int value) {
-        
+    public Age() {
+        super();
     }
     
-    public int getAge() {
-        return age;
+    public void ageUp(int value) { 
+        statUp(value);  
     }
     
-    public void die() {
-        
+    public int getAge() { 
+        return getStat();
     }
     
-    public void isDead() {
+    public void die() { 
+        stat = -1;
+    }
+    
+    public boolean isDead() {
         
+        if(stat == -1) {
+            return true;
+        } else {
+            return false;
+        }
     }
         
 }

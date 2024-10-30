@@ -1,20 +1,23 @@
 
-public class Athletics {
-    int athletics;
+public class Athletics extends Statistics{
     
-    public void athleticsUp(int value) {
-        
+    public Athletics() {
+        super();
+    }
+    
+    public void athleticsUp(int value) {     
+        statUp(value);
     }
     
     public int getAthletics() {
-        return athletics;
+       return getStat();
     }
     
     public void loseAllAthletics() {
-        
+        stat = 0;  
     }
     
-    public void athleticsDown() {
-        
+    public void athleticsDown(int value) {
+        statDown(value);  
     }
 }
