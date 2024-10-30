@@ -1,4 +1,3 @@
-
 public class Money extends Statistics{
     
     public Money() {
@@ -16,6 +15,4 @@ public class Money extends Statistics{
     public int getMoney() {
         return getStat();
     }
-    
-    
 }
