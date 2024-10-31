@@ -11,7 +11,8 @@ public class Age extends Statistics{
     public int getAge() { 
         return getStat();
     }
-    
+
+    // edit implementation of die() and isDead once use is discussed
     public void die() { 
         stat = -1;
     }
