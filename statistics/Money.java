@@ -1,18 +1,14 @@
+
 public class Money extends Statistics{
     
     public Money() {
         super();
     }
-    
-    public void moneyDown(int value) {
-        statDown(value); 
+
+    @Override
+    public String getStatName() {
+        return "Money";
     }
     
-    public void moneyUp(int value) {
-        statUp(value);
-    }
     
-    public int getMoney() {
-        return getStat();
-    }
 }

@@ -1,28 +1,26 @@
+
 public class Age extends Statistics{
     
     public Age() {
         super();
     }
     
-    public void ageUp(int value) { 
-        statUp(value);  
-    }
-    
-    public int getAge() { 
-        return getStat();
+    @Override
+    public String getStatName() {
+        return "Age";
     }
 
-    // edit implementation of die() and isDead once use is discussed
+    
     public void die() { 
-        stat = -1;
+        statValue = -1;
     }
     
     public boolean isDead() {
         
-        if(stat == -1) {
+        if(statValue == -1) {
             return true;
         } else {
             return false;
         }
-    }      
+    }    
 }

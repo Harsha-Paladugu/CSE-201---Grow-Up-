@@ -1,18 +1,14 @@
+
 public class Karma extends Statistics{
         
         public Karma() {
             super();
         }
-        public void karmaUp(int value) {
-            statUp(value);
+
+        @Override
+        public String getStatName() {
+            return "Karma";
         }
-        
-        public void karmaDown(int value) {
-            statDown(value);
-        }
-        
-        public int getKarma() {
-           return getStat();
-        }
+
         
 }
