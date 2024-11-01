@@ -13,6 +13,7 @@ public class Control {
     public int Prompt(String question, Player player) {
         
         while (true) {
+            System.out.println("Type menu to show the stats menu");
             // Ask question and collect input
             System.out.println(question + " Y/N: ");
             String answer = sc.next();
