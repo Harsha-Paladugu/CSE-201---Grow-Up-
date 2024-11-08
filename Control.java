@@ -14,7 +14,7 @@ public class Control {
         
         while (true) {
             // Ask question and collect input
-            System.out.println(question + " Y/N/Menu: ");
+            System.out.println("\n" + question + " Y/N/Menu: ");
             String answer = sc.next();
             
             // If "yes," return 1
