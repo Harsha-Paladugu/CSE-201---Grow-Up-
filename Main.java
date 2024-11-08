@@ -43,7 +43,7 @@ public class Main {
         System.out.println("The doctor has given your parents a form to give you up for adoption.\n");
         
         if(event.eventOccuring(player, 50)) {
-            System.out.println("\nYour parents put you up for adoption.\nYou were adopted by a new family.\n");
+            System.out.println("\nYour parents put you up for adoption.\n\nYou were adopted by a new family.\n");
         } else {
             System.out.println("Your parents decided to raise you.\n");
         } // end adoption event
@@ -76,11 +76,11 @@ public class Main {
         
         if (playerChoice == 1) {
             player.karma.increaseStat(10);
-            System.out.println("You made a friend!");
+            System.out.println("You made a friend!\n");
             hasFriend = true;
         } else {
             player.karma.decreaseStat(10);
-            System.out.println("You kept to yourself.");
+            System.out.println("You kept to yourself.\n");
         } 
         player.age.increaseStat(1); // end friendship event
         
@@ -97,10 +97,10 @@ public class Main {
                 player.karma.decreaseStat(15);
             }
         }
-        player.age.increaseStat(1); // end lunch event
+        player.age.increaseStat(3); // end lunch event
         
         // start fight random event
-        System.out.println("At recess, a kid comes up to you and steals your ball.\n");
+        System.out.println("\nAt recess, a kid comes up to you and steals your ball.\n");
         
         if(event.eventOccuring(player, 50)) {
             System.out.println("You punched the kid in the face to get your ball back.\n");
@@ -109,7 +109,7 @@ public class Main {
             System.out.println("You walked away to avoid a fight.\n");
             player.karma.increaseStat(20);
         }
-        player.age.increaseStat(1); // end fight event
+        player.age.increaseStat(3); // end fight event
         
         // start sports event
         System.out.println("Football season is starting.\n");
@@ -122,6 +122,20 @@ public class Main {
             System.out.println("You did not sign up for football.\n");
         }
          player.age.increaseStat(1); // end sports event
+         
+        // start chores event
+         System.out.println("Your mom gave you some chores to do.");
+         playerChoice = control.Prompt("Do you want to do your chores?", player);
+         
+         if(playerChoice == 1) {
+             System.out.println("You did your chores.\n");
+             player.karma.increaseStat(10);
+             player.money.increaseStat(20);
+         } else {
+             System.out.println("You did not do any chores.\n");
+             player.karma.decreaseStat(10);
+         }
+         player.age.increaseStat(1); // end chores event
     }
     
     private static void playHighschoolStage(Player player, Event event, Control control, int playerChoice){
