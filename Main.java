@@ -16,6 +16,21 @@ public class Main {
         
         // Starting Kindergarten
         playKindergartenStage(player, event, control, playerChoice);
+        
+        // Starting Highschool
+        playHighschoolStage(player, event, control, playerChoice);
+        
+        // Starting Young Adult Stage
+        playYoungAdultStage(player, event, control, playerChoice);
+        
+        // Starting Adult Stage
+        playAdultStage(player, event, control, playerChoice);
+        
+        // Starting Retirement Stage
+        playRetirementStage(player, event, control, playerChoice);
+        
+        // Starting Afterlife
+        playAfterlifeStage(player, event, control, playerChoice);
     }
     
     private static void playInfancyStage(Player player, Event event, Control control, int playerChoice) {
@@ -108,4 +123,26 @@ public class Main {
         }
          player.age.increaseStat(1); // end sports event
     }
+    
+    private static void playHighschoolStage(Player player, Event event, Control control, int playerChoice){
+        
+    }
+    
+    private static void playYoungAdultStage(Player player, Event event, Control control, int playerChoice) {
+        
+    }
+    
+    private static void playAdultStage(Player player, Event event, Control control, int playerChoice) {
+        
+    }
+    
+    private static void playRetirementStage(Player player, Event event, Control control, int playerChoice) {
+        
+    }
+    
+    private static void playAfterlifeStage(Player player, Event event, Control control, int playerChoice) {
+        
+    }
+        
+        
 }
