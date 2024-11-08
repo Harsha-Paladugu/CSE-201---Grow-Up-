@@ -19,18 +19,32 @@ public class Main {
     
     private static void playInfancyStage(Player player, Event event) {
         
-        System.out.println("Infancy Stage: \n");
+        // start infancy stage
+        System.out.println("Infancy Stage: \n\n");
+        System.out.println("You have been born.\n");
 
-        // Random event for adoption
-        event.randomEvent(0, player.karma.getStatValue());
-        System.out.println("fill in later");
-
-        // Random event for vaccination
-        event.randomEvent(0, player.karma.getStatValue());
-        System.out.println("fill in later");
+        // start adoption event
+        System.out.println("The doctor has given your parents a form to give you up for adoption.\n");
         
-        // end Infancy
-        System.out.println("\nFinished with infancy. \n");
+        if(event.eventOccuring(player, 50)) {
+            System.out.println("\nYour parents put you up for adoption.\nYou were adopted by a new family.\n");
+        } else {
+            System.out.println("Your parents decided to raise you.\n");
+        } // end adoption event
+        
+
+        // start vaccination event
+        System.out.println("It is time for your vaccinations, will your parents choose to vaccinate you?\n");
+        
+        if(event.eventOccuring(player, 50)) {
+            System.out.println("Your parents decided to not vaccinate you.\n");
+            player.karma.decreaseStat(10);
+        } else {
+            System.out.println("Your parents chose to vaccinate you.\n");
+            player.karma.increaseStat(10);;
+        } // end vaccination event
+        
+        System.out.println("\nFinished with infancy. \n"); // end infancy stage
     }
     
     private static void playKindergartenStage(Player player, Control control) {
@@ -40,15 +54,33 @@ public class Main {
         // Increase age from 0 to 5 when starting kindergarten
         player.age.increaseStat(5); 
 
-        // Prompt player to make a choice about friendship
+        // start friendship event
         int playerChoice = control.Prompt("Do you want to make a friend?", player);
-
+        boolean hasFriend = false;
+        
         if (playerChoice == 1) {
             player.karma.increaseStat(10);
             System.out.println("You made a friend!");
+            hasFriend = true;
         } else {
             player.karma.decreaseStat(10);
             System.out.println("You kept to yourself.");
+        } 
+        player.age.increaseStat(1); // end friendship event
+        
+        // start lunch event if player made a friend
+        if(hasFriend) {
+            System.out.println("It's lunch time, you sit with your friend and he asks for your pretzels. ");
+            playerChoice = control.Prompt("Will you share your pretzels?", player);
+            
+            if(playerChoice == 1) {
+                System.out.println("You gave your friend some of your pretzels.");
+                player.karma.increaseStat(15);
+            } else {
+                System.out.println("You did not give your friend pretzels, he is now upset. :(");
+                player.karma.decreaseStat(15);
+            }
         }
+        player.age.increaseStat(1);
     }
 }

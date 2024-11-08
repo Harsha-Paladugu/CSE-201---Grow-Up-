@@ -16,7 +16,7 @@ public class Athletics extends Statistics {
     * Returns the name of Athletics as a string
     *
     * @return the name of the statistics "Athletics"
-    
+    */
     @Override
     public String getStatName() {
         return "Athletics";
