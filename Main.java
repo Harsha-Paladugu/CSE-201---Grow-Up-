@@ -24,7 +24,7 @@ public class Main {
         System.out.println("Infancy Stage: \n\n");
         System.out.println("You have been born.\n");
 
-        // start adoption event
+        // start adoption random event
         System.out.println("The doctor has given your parents a form to give you up for adoption.\n");
         
         if(event.eventOccuring(player, 50)) {
@@ -34,7 +34,7 @@ public class Main {
         } // end adoption event
         
 
-        // start vaccination event
+        // start vaccination random event
         System.out.println("It is time for your vaccinations, will your parents choose to vaccinate you?\n");
         
         if(event.eventOccuring(player, 50)) {
@@ -72,7 +72,7 @@ public class Main {
         // start lunch event if player made a friend
         if(hasFriend) {
             System.out.println("It's lunch time, you sit with your friend and he asks for your pretzels.\n");
-            playerChoice = control.Prompt("Will you share your pretzels?\n", player);
+            playerChoice = control.Prompt("Will you share your pretzels?", player);
             
             if(playerChoice == 1) {
                 System.out.println("You gave your friend some of your pretzels.\n");
@@ -84,8 +84,9 @@ public class Main {
         }
         player.age.increaseStat(1); // end lunch event
         
-        // start fight event
+        // start fight random event
         System.out.println("At recess, a kid comes up to you and steals your ball.\n");
+        
         if(event.eventOccuring(player, 50)) {
             System.out.println("You punched the kid in the face to get your ball back.\n");
             player.karma.decreaseStat(20);
@@ -94,5 +95,17 @@ public class Main {
             player.karma.increaseStat(20);
         }
         player.age.increaseStat(1); // end fight event
+        
+        // start sports event
+        System.out.println("Football season is starting.\n");
+        playerChoice = control.Prompt("Do you want to sign up for football?", player);
+        
+        if(playerChoice == 1) {
+            System.out.println("You signed up for football.\n");
+            player.athletics.increaseStat(50);
+        } else {
+            System.out.println("You did not sign up for football.\n");
+        }
+         player.age.increaseStat(1); // end sports event
     }
 }
