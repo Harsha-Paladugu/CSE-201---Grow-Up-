@@ -1,15 +1,3 @@
-/**
-* Class: Player
-* @author Harsha 
-* @version 1.0
-* Course : CSE201
-* Written: October 30, 2024
-*
-* Purpose: This class keeps track of all of the statistics that a player 
-*/
-import java.util.ArrayList;
-import java.util.List;
-
 public class Player {
 
     /**
@@ -37,10 +25,7 @@ public class Player {
      */
     protected Karma karma;
 
-    /**
-     * A menu that displays and manages the player's statistics.
-     */
-    protected Menu menu;
+    protected Statistics[] statList = new Statistics[5]; // 0 Age, 1 Athletics, 2 Education, 3 Karma, 4 Money
 
     /**
      * Initializes a new instance of the Player class with default statistics for age, money, athletics,
@@ -53,13 +38,17 @@ public class Player {
         this.education = new Education();
         this.karma = new Karma();
 
-        List<Statistics> statList = new ArrayList<>();
-        statList.add(age);
-        statList.add(money);
-        statList.add(athletics);
-        statList.add(education);
-        statList.add(karma);
-
-        this.menu = new Menu(statList);
+        this.statList[0] = this.age;
+        this.statList[1] = this.athletics;
+        this.statList[2] = this.education;
+        this.statList[3] = this.karma;
+        this.statList[4] = this.money;
+    }
+    
+    public void changeAllStats(int[] statUpdate) {
+        
+        for(int i = 0; i < 5; i++) {
+            this.statList[i].changeStat(statUpdate[i]);
+        }
     }
 }
