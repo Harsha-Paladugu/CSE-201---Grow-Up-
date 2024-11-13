@@ -1,12 +1,3 @@
-/**
-* Class: Statistics
-* @author Harsha
-* @version 1.0
-* Course : CSE201
-* Written: October 30th, 2024
-*
-* Purpose: – This is an abstract class that outlines what methods each child class should have
-*/
 public abstract class Statistics {
 
     /**
@@ -22,21 +13,12 @@ public abstract class Statistics {
     }
 
     /**
-     * Increases the stat value by the specified amount.
+     * Change the stat value by the specified amount.
      *
-     * @param value the amount to increase the stat value by
+     * @param value the amount to change the stat value by
      */
-    public void increaseStat(int value) {
+    public void changeStat(int value) {
         statValue += value;
-    }
-
-    /**
-     * Decreases the stat value by the specified amount.
-     *
-     * @param value the amount to decrease the stat value by
-     */
-    public void decreaseStat(int value) {
-        statValue -= value;
     }
 
     /**
