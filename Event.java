@@ -17,7 +17,7 @@ public class Event {
      * @param probability The chance (0-100) that the event happens if karma is high enough.
      * @return true if the event happens, false if it does not.
      */
-    public boolean eventOccuring(Player player, int probability) {
+    public static boolean eventOccuring(Player player, int probability) {
         
         // Check if karma is too low for the event to happen
         if (isKarmaLow(player)) {
@@ -37,7 +37,7 @@ public class Event {
      * @param player The player whose karma is checked.
      * @return true if the player's karma is below 20, otherwise false.
      */
-    public boolean isKarmaLow(Player player) {
+    public static boolean isKarmaLow(Player player) {
         return player.karma.getStatValue() < 0;
     }
 }
