@@ -2,10 +2,7 @@ public class KindergartenStage {
     
     public static void playKindergartenStage(Player player) {
             
-        System.out.println("Starting Kindergarten");
-    
-        // Increase age from 0 to 5 when starting kindergarten
-        player.age.changeStat(5); 
+        Control.Print("Starting Kindergarten");
     
         // Start friendship event
         Main.positiveStats = Control.setStatArray(1,0,0,10,0);
@@ -24,7 +21,7 @@ public class KindergartenStage {
         Main.positiveStats = Control.setStatArray(1, 0, 0, 20, 0);
         Main.negativeStats = Control.setStatArray(1, 0, 0, -10, 0);
         
-        if(Main.playerChoice == Control.CHOICE.YES) {
+        if(Main.playerChoice == true) {
             
             Control.choiceEventHandler(
                     "You are eating lunch with your friend, he asks to try your pretzels.",
@@ -77,7 +74,7 @@ public class KindergartenStage {
                 Main.negativeStats, // Stat changes if No
                 player); // End chores event
         
-     // Start pet event
+        // Start pet event
         Main.positiveStats = Control.setStatArray(1, 0, 0, 15, -30); // Increase karma and decrease money if they get a pet
         Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0); // No change if they choose not to
 
@@ -85,12 +82,30 @@ public class KindergartenStage {
             
             Control.choiceEventHandler(
                 "You have the opportunity to adopt a pet.", // Initial message
-                "Do you want to get a pet?", // Prompt for Yes/No choice
+                "Do you want to get a pet?", // Prompt for Yes or No
                 "You adopted a pet! It brings you joy but comes with expenses.", // Message if Yes
                 Main.positiveStats, // Stat changes if Yes
                 "You decided not to get a pet.", // Message if No
                 Main.negativeStats, // Stat changes if No
                 player); // End pet event
+            
+        // Start pop quiz random event
+        Main.positiveStats = Control.setStatArray(1, 0, 20, 0, 0);
+        Main.negativeStats = Control.setStatArray(1, 0, -5, 0, 0);
+        
+        if(Event.eventOccuring(player, 100)) {
+            
+            Control.customEventHandler(
+                "Your teacher has given a pop quiz.",
+                "What is 2 + 3?",
+                "5",
+                "You aced the quiz.",
+                Main.positiveStats,
+                "You failed the quiz.", 
+                Main.negativeStats, 
+                player);
+        } // end pop quiz random event
+        
         } 
     }
 }
