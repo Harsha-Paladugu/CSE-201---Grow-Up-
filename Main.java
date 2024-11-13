@@ -2,7 +2,7 @@ public class Main {
     
     public static int[] positiveStats = new int[5];
     public static int[] negativeStats = new int[5];
-    public static Control.CHOICE playerChoice;
+    public static boolean playerChoice;
     public static void main(String[] args) {
         
         // initialize new player when game starts
