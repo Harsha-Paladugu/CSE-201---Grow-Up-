@@ -2,14 +2,14 @@ import java.util.Scanner;
 
 public class Control {
     
-    public enum CHOICE{YES, NO};
+    public static enum CHOICE{YES, NO};
     private static Scanner sc = new Scanner(System.in); // Keep Scanner open for reuse
 
     /**
-     * Prompts the player with a question and returns an integer based on the response.
+     * Prompts the player with a question and returns YES or NO based on response
      * @param question the question to be asked.
      * @param player the player object for accessing the menu if requested.
-     * @return 1 if the player responds with "yes" or "y", 0 if "no" or "n".
+     * @return YES if the player responds with "yes" or "y", NO if "no" or "n".
      */
     public static CHOICE Prompt(String question, Player player) {
         
@@ -19,12 +19,12 @@ public class Control {
             System.out.println("\n" + question + " Y/N/Menu: ");
             String answer = sc.next();
             
-            // If "yes," return 1
+            // If "yes," return YES
             if (answer.equalsIgnoreCase("yes") || answer.equalsIgnoreCase("y")) {
                 
                 return CHOICE.YES;
             } 
-            // If "no," return 0
+            // If "no," return NO
             else if (answer.equalsIgnoreCase("no") || answer.equalsIgnoreCase("n")) {
                 
                 return CHOICE.NO;
@@ -84,7 +84,7 @@ public class Control {
         }
     }
     
-    public static void choiceEventHandler(String initialMessage, String prompt, String positiveMessage, int[] positiveStats, 
+    public static CHOICE choiceEventHandler(String initialMessage, String prompt, String positiveMessage, int[] positiveStats, 
             String negativeMessage, int[] negativeStats, Player player) {
         
         Print(initialMessage);
@@ -98,7 +98,9 @@ public class Control {
             
             Print(negativeMessage);
             player.changeAllStats(negativeStats);
-        }  
+        } 
+        
+        return playerChoice;
     }
 
     public static int[] setStatArray(int age, int athletics, int education, int karma, int money) {
