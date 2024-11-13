@@ -1,110 +1,126 @@
 import java.util.Scanner;
 
 public class Control {
-    
-    public static enum CHOICE{YES, NO};
+
     private static Scanner sc = new Scanner(System.in); // Keep Scanner open for reuse
 
     /**
-     * Prompts the player with a question and returns YES or NO based on response
-     * @param question the question to be asked.
-     * @param player the player object for accessing the menu if requested.
-     * @return YES if the player responds with "yes" or "y", NO if "no" or "n".
+     * Handles user response, supporting both "yes" and custom answers.
      */
-    public static CHOICE Prompt(String question, Player player) {
-        
+    private static boolean getUserResponse(String question, String positiveResponse, boolean yesNoOnly, Player player) {
         while (true) {
-            
-            // Ask question and collect input
             System.out.println("\n" + question + " Y/N/Menu: ");
             String answer = sc.next();
-            
-            // If "yes," return YES
-            if (answer.equalsIgnoreCase("yes") || answer.equalsIgnoreCase("y")) {
-                
-                return CHOICE.YES;
-            } 
-            // If "no," return NO
-            else if (answer.equalsIgnoreCase("no") || answer.equalsIgnoreCase("n")) {
-                
-                return CHOICE.NO;
-            }
-            // If "menu," show stats menu
-            else if (answer.equalsIgnoreCase("menu") || answer.equalsIgnoreCase("m")) {
-                
-                Menu.showStats(player);
-            }
-            // For invalid input, prompt again
-            else {
-                
-                System.out.println("Input not valid, please try again.");
+
+            if (yesNoOnly) { // For Prompt with "yes" or "no" answers
+                if (answer.equalsIgnoreCase("yes") || answer.equalsIgnoreCase("y")) {
+                    return true;
+                } else if (answer.equalsIgnoreCase("no") || answer.equalsIgnoreCase("n")) {
+                    return false;
+                } else if (answer.equalsIgnoreCase("menu") || answer.equalsIgnoreCase("m")) {
+                    Menu.showStats(player);
+                } else {
+                    System.out.println("Input not valid, please try again.");
+                }
+            } else { // For custom answers
+                if (answer.equalsIgnoreCase(positiveResponse.trim())) {
+                    return true;
+                } else if (answer.equalsIgnoreCase("menu") || answer.equalsIgnoreCase("m")) {
+                    Menu.showStats(player);
+                } else {
+                    System.out.println("Incorrect answer");
+                    return false;
+                }
             }
         }
     }
-    
+
+    /**
+     * Prompts the player with a question and returns true for "yes" or "y".
+     */
+    public static boolean Prompt(String question, Player player) {
+        return getUserResponse(question, null, true, player);
+    }
+
+    /**
+     * Prompts the player with a custom correct answer.
+     */
+    public static boolean promptCustomInput(String question, String correctAnswer, Player player) {
+        return getUserResponse(question, correctAnswer, false, player);
+    }
+
+    /**
+     * Prints text with a delay between each character.
+     */
     public static void Print(String text) {
-        
-        for (int i = 0; i < text.length(); i++) {
-            
-            System.out.print(text.charAt(i));
-
-            try {
-                
-                Thread.sleep(20); // Delay in milliseconds (adjust as needed)
-            } catch (InterruptedException ex) {
-                
-                Thread.currentThread().interrupt();
+        try {
+            for (char c : text.toCharArray()) {
+                System.out.print(c);
+                Thread.sleep(1); // Adjust as needed
             }
-        }
-
-        try{
-            
-            Thread.sleep(500);
+            Thread.sleep(1);
         } catch (InterruptedException ex) {
-            
             Thread.currentThread().interrupt();
         }
-        System.out.println(); 
-        System.out.println();
+        System.out.println("\n");
     }
-    
-    public static void randomEventHandler(String initialMessage, String positiveMessage, int[] positiveStats, 
-            String negativeMessage, int[] negativeStats, int probability, Player player) {
-        
+
+    /**
+     * Handles a random event with probability.
+     */
+    public static void randomEventHandler(String initialMessage, String positiveMessage, int[] positiveStats,
+                                          String negativeMessage, int[] negativeStats, int probability, Player player) {
         Print(initialMessage);
-        
-        if(Event.eventOccuring(player, probability)) {
-            
+
+        if (Event.eventOccuring(player, probability)) {
             Print(positiveMessage);
             player.changeAllStats(positiveStats);
         } else {
-            
             Print(negativeMessage);
             player.changeAllStats(negativeStats);
         }
     }
-    
-    public static CHOICE choiceEventHandler(String initialMessage, String prompt, String positiveMessage, int[] positiveStats, 
-            String negativeMessage, int[] negativeStats, Player player) {
-        
+
+    /**
+     * Generalized event handler for choice and custom events.
+     */
+    private static boolean eventHandler(String initialMessage, String prompt, String correctAnswer, String positiveMessage,
+                                        int[] positiveStats, String negativeMessage, int[] negativeStats, Player player, boolean yesNoOnly) {
+
         Print(initialMessage);
-        CHOICE playerChoice = Prompt(prompt, player);
-        
-        if(playerChoice == CHOICE.YES) {
-            
+        boolean choice = yesNoOnly ? Prompt(prompt, player) : promptCustomInput(prompt, correctAnswer, player);
+
+        if (choice) {
             Print(positiveMessage);
             player.changeAllStats(positiveStats);
         } else {
-            
             Print(negativeMessage);
             player.changeAllStats(negativeStats);
-        } 
-        
-        return playerChoice;
+        }
+
+        return choice;
     }
 
+    /**
+     * Handles choice-based events with YES/NO responses.
+     */
+    public static boolean choiceEventHandler(String initialMessage, String prompt, String positiveMessage, int[] positiveStats,
+                                             String negativeMessage, int[] negativeStats, Player player) {
+        return eventHandler(initialMessage, prompt, "", positiveMessage, positiveStats, negativeMessage, negativeStats, player, true);
+    }
+
+    /**
+     * Handles custom events with a specific correct answer.
+     */
+    public static boolean customEventHandler(String initialMessage, String prompt, String correctAnswer, String positiveMessage,
+                                             int[] positiveStats, String negativeMessage, int[] negativeStats, Player player) {
+        return eventHandler(initialMessage, prompt, correctAnswer, positiveMessage, positiveStats, negativeMessage, negativeStats, player, false);
+    }
+
+    /**
+     * Sets stats in an array format for easy use across events.
+     */
     public static int[] setStatArray(int age, int athletics, int education, int karma, int money) {
-        
         return new int[] {age, athletics, education, karma, money};
     }
 }
