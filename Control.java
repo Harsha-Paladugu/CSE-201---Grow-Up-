@@ -50,7 +50,7 @@ public class Control {
 
             try {
                 
-                Thread.sleep(25); // Delay in milliseconds (adjust as needed)
+                Thread.sleep(20); // Delay in milliseconds (adjust as needed)
             } catch (InterruptedException ex) {
                 
                 Thread.currentThread().interrupt();
