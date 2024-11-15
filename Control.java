@@ -56,9 +56,9 @@ public class Control {
         try {
             for (char c : text.toCharArray()) {
                 System.out.print(c);
-                Thread.sleep(1); // Adjust as needed
+                Thread.sleep(20); // Adjust as needed
             }
-            Thread.sleep(1);
+            Thread.sleep(100);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
