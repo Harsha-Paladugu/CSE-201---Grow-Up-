@@ -45,7 +45,7 @@ public class KindergartenStage {
                 Main.positiveStats, // Stat changes if event happens
                 "You let it go and avoided any trouble.", // Message if event does not happen
                 Main.negativeStats, // Stat changes if event does not happen
-                0, // probability
+                50, // probability
                 player); // End random fight event 
         
         // Start sports event
@@ -87,7 +87,8 @@ public class KindergartenStage {
                 Main.positiveStats, // Stat changes if Yes
                 "You decided not to get a pet.", // Message if No
                 Main.negativeStats, // Stat changes if No
-                player); // End pet event
+                player);
+        } // End pet event
             
         // Start pop quiz random event
         Main.positiveStats = Control.setStatArray(1, 0, 20, 0, 0);
@@ -106,6 +107,52 @@ public class KindergartenStage {
                 player);
         } // end pop quiz random event
         
-        } 
+        // start divorce random event
+        Main.positiveStats = Control.setStatArray(1, 0, 0, -5, 0);
+        Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0);
+        Control.randomEventHandler(
+                "", // no initial message
+                "Your parents decided to get a divorce.", // message if event happens
+                Main.positiveStats, // stat changes if event happens
+                "", // no message if event does not happen
+                Main.negativeStats, // stat changes if event does not happen
+                50, // probability of event happening
+                player); // end divorce event
+        
+        // start injury random event
+        Control.Print("You are walking down the street and see a car coming towards you.");      
+        if(Event.eventOccuring(player, 100)) {
+            Control.Print("The car hits you and breaks your leg");
+            player.athletics.resetStat();
+        } else {
+            Control.Print("The car was able to stop just in time.");
+        } // end injury random event
+        
+        // Start disease and death random event
+        Main.positiveStats = Control.setStatArray(-100, 0, 0, 0, 0); // No stat changes if player survives
+        Main.negativeStats = Control.setStatArray(-100, 0, 0, 0, 0);
+
+        Control.randomEventHandler(
+                "You start feeling sick...", // Initial message
+                "You caught a deadly disease and passed away.", // Message if the event happens
+                Main.positiveStats, // Stat changes if the event happens
+                "You recovered quickly and felt fine.", // Message if the event does not happen
+                Main.negativeStats, // Stat changes if the event does not happen
+                5, // probability of event happening
+                player); // End disease and death event
+        
+        // Start work even
+        Main.positiveStats = Control.setStatArray(1, 5, 0, 5, 30); // Increase age and money if the player works
+        Main.negativeStats = Control.setStatArray(1, 0, 0, -5, 0); // Increase age only if the player does not work
+
+        Main.playerChoice = Control.choiceEventHandler(
+                "You have the opportunity to get a job delivering newspapers", // Initial message
+                "Do you want to work?", // Prompt for Yes or No
+                "You worked hard and earned some money!", // Message if Yes
+                Main.positiveStats, // Stat changes if Yes
+                "You chose to relax instead of working.", // Message if No
+                Main.negativeStats, // Stat changes if No
+                player); // End work event 
     }
+    
 }
