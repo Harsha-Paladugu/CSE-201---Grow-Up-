@@ -39,17 +39,17 @@ public class YoungAdultStage {
 		Main.negativeStats = Control.setStatArray(1, 0, 10, 5, 0); // increase education and karma
 
 		Control.choiceEventHandler("School seems to be getting to you...", // Initial message
-				"Would you like to drop out of highschool?", // Prompt yes or no
-				"You are now a highschool drop out", // Message if Yes
+				"Would you like to drop out of high school?", // Prompt yes or no
+				"You are now a high school drop out", // Message if Yes
 				Main.positiveStats, // stat changes if yes
 				"You continue to push through to graduation!", // Message if no
 				Main.negativeStats, // Stat changes if no
 				player);
 
-		if (player.age.getStatValue() > limit) {
+		if (player.age.getStatValue() >= limit) {
 			dropped = true;
 			player.age.changeStat(-999);
-		} // end highschool drop out event
+		} // end high school drop out event
 
 		// starting graduation test event
 		Main.positiveStats = Control.setStatArray(1, 0, limit, 0, 0); // increase education for counting
@@ -124,7 +124,7 @@ public class YoungAdultStage {
 				player.education.changeStat(-limit + 1); // change education to regular
 			} // end graduation text event
 
-			if (tests == 0) { // if none passed then player is not a highschool grad
+			if (tests == 0) { // if none passed then player is not a high school grad
 				System.out.println("You didn't pass any of your finals... so uh.. you did not graduate");
 				dropped = true;
 			} else if (tests >= 2) { // give diploma if enough tests passed
@@ -214,6 +214,7 @@ public class YoungAdultStage {
 			/*
 			 * IF NOT KICKED OUT SCENARIO
 			 */
+			
 			if (!kickedOut) {
 				Control.Print("You walk to your room and sigh a breath of relief");
 				Control.Print("You decide to go on a walk to try to figure something out");
@@ -221,6 +222,7 @@ public class YoungAdultStage {
 				Main.positiveStats = Control.setStatArray(limit, 0, -25, -20, -100);
 				Main.negativeStats = Control.setStatArray(1, 0, 10, 5, 0);
 
+				// start drug event
 				Control.choiceEventHandler(
 						"You stumble upon an alleyway where you see 4 people.\n They stop you by yelling 'HEY YOU'", // Initial message
 						"They ask if you want to try something (yes/no)", // Prompt yes or no 
@@ -234,12 +236,12 @@ public class YoungAdultStage {
 					Main.negativeStats = Control.setStatArray(-999, 0, 0, 5, 0);
 					Control.choiceEventHandler("You follow them in and they pull out a bag of pills", // Initial message
 							"Will you take their offer?", // Prompt yes or no
-							"You took he pill and you hallucinated, threw up, broke your wrist, passed out, and somehow lost your wallet", // Message if Yes
+							"You took the pill and you hallucinated, threw up, broke your wrist, passed out, and somehow lost your wallet", // Message if Yes
 							Main.positiveStats, // stat changes if yes
 							"You run out of the house and did not lose anything", // Message if no
 							Main.negativeStats, // Stat changes if no
 							player);
-
+					// start another kick out event
 					if (player.money.getStatValue() < 0) {
 						Control.Print("You run back into your house and your parents look at you in distraught");
 						Control.choiceEventHandler("They ask you what happened?", // Initial message
@@ -254,16 +256,16 @@ public class YoungAdultStage {
 						kickedOut = true;
 					}
 				}
-			}
+			} // end kicked out and drug event
 
 			if (kickedOut) {
 				// Messages to friend after kicked out
 				Control.Print("With just two trash bags of stuff you leave your house");
 				Control.Print("You call your old bestfriend and ask to crash on their couch for a while");
-				if (player.karma.getStatValue() > 50) {
+				if (player.karma.getStatValue() > 50) { // if karma is good enough then you will stay at your friends
 					Control.Print("They answer and say 'Yes, we need to catch up anyway'");
 					wFriend = true;
-				} else
+				} else // if karma is low then you will not stay at your friends
 					Control.Print("The call immediately goes to voice mail");
 			}
 
@@ -312,16 +314,11 @@ public class YoungAdultStage {
 					Main.negativeStats = Control.setStatArray(-999, 0, 0, 15, 0);
 					Control.choiceEventHandler("You follow them in and they pull out a bag of pills", // Initial message
 							"Will you take their offer?", // Prompt yes or no
-							"You took he pill and you hallucinated, threw up, broke your wrist, passed out, and somehow lost your wallet", // Message if Yes
+							"You took the pill and you hallucinated, threw up, broke your wrist, passed out, and somehow lost your wallet", // Message if Yes
 							Main.positiveStats, // stat changes if yes 
 							"You run out of the house and did not lose anything", // Message if no
 							Main.negativeStats, // Stat changes if no
 							player);
-				}
-
-				if (player.age.getStatValue() > limit) {
-					inCollege = true;
-					player.age.changeStat(-999);
 				}
 			}
 		}
@@ -329,11 +326,11 @@ public class YoungAdultStage {
 		Main.positiveStats = Control.setStatArray(limit, 0, -25, -20, -100);
 		Main.negativeStats = Control.setStatArray(1, 0, 10, 5, 0);
 
-		if (highGrad && !inCollege) {
+		if (highGrad && !inCollege || kickedOut) {
 			Control.Print("Well here you are... back in highschool");
 			Control.Print("But this time as the school janitor");
 			Control.Print(
-					"As you start to empty the trash, you find a scratch off ticket tha thas not been scratched yet");
+					"As you start to empty the trash, you find a scratch off ticket that has not been scratched yet");
 			Control.choiceEventHandler(
 					"Although the principal told you to turn anything that could have value into him", // Initial message
 					"Will you take it?",  // Prompt yes or no
@@ -349,6 +346,8 @@ public class YoungAdultStage {
 			Control.Print("They make you hand it over");
 			Control.Print("and now you will never know");
 		}
+		
+		Control.Print("The next day");
 		
 		Main.positiveStats = Control.setStatArray(limit, 0, -25, -20, -100);
 		Main.negativeStats = Control.setStatArray(1, 0, 10, 5, 0);
@@ -376,6 +375,10 @@ public class YoungAdultStage {
 		}
 		
 		}
+		
+		/*
+		 * ALL THINGS IN COLLEGE
+		 */
 
 		if (inCollege) {
 			// start college sports event
@@ -410,6 +413,44 @@ public class YoungAdultStage {
 						"You passed!", // Message if no
 						Main.negativeStats, // Stat changes if no
 						player);
+			}
+			
+			// start college party event
+			Main.positiveStats = Control.setStatArray(limit, 0, -10, -10, 0);
+			Main.negativeStats = Control.setStatArray(1, 0, 10, 5, 50);
+			
+			Control.Print("You have a big exam tomorrow afternoon but you are not in the mood to study");
+			Control.choiceEventHandler("You're scrolling on snapchat when you get a message from your friend", 
+					"It reads 'do you want to go to a party tonight?'", 
+					"Well... what the heck you have all morning tomorrow!",
+					Main.positiveStats, 
+					"You spend the night in your dorm studying for your exam the next day", 
+					Main.negativeStats, 
+					player);
+			
+			if (player.age.getStatValue() > limit) {
+				player.age.changeStat(-limit + 1);
+				
+				Main.positiveStats = Control.setStatArray(limit, 0, -10, -10, 0);
+				Main.negativeStats = Control.setStatArray(1, 0, 10, 5, 50);
+				
+				Control.Print("You walk to the party, meeting up with your friend half way there");
+				Control.choiceEventHandler("You guys get to the party and are immediately greeted with canned drink", 
+						"Will you drink it?", 
+						"You drink it and everyone starts yelling 'CHUG CHUG CHUG'"
+						+ "\nThey also keep handing drinks to you"
+						+ "\nAt some point you start to feel very dizzy and your feet take you to the dance floor", 
+						Main.positiveStats, 
+						"They call you lame and kick you out of the party", 
+						Main.negativeStats, 
+						player);
+			}
+		
+			if (player.age.getStatValue() > limit) {
+				player.age.changeStat(-limit + 1);
+				
+				Control.Print("You wake up the next morning on the roof of a house");
+				Control.Print("You missed you exam...");
 			}
 
 			// starting college dropping event
@@ -593,11 +634,11 @@ public class YoungAdultStage {
 			Control.Print("You sit on the couch and a cloud of dust puffs up");
 			Control.Print("As you swing your hand around to get it out of your face, you think to yourself...");
 			Control.Print("How did I end up here? Now what...?");
-		} else if (!kickedOut && dropped) {
+		} else if (kickedOut && !wFriend) {
 			Control.Print("Thank goodness your parents gave you another chance");
 			Control.Print("You think to yourself 'I better not screw up this time...");
 		} else if (wFriend) {
-			Control.Print("Thank goodneed your friend is letting you crash at their place");
+			Control.Print("Thank goodness your friend is letting you crash at their place");
 			Control.Print("But they already seem to be getting tired of you");
 			Control.Print("Hopefully you can turn things around soon");
 		}
