@@ -13,8 +13,6 @@ public class YoungAdultStage {
 		boolean wFriend = false;
 		int limit = 1000;
 
-		Control.Print(("Starting Young Adulthood"));
-
 		// Start getting into college event
 		Main.positiveStats = Control.setStatArray(limit, 0, 0, 0, 0);
 		Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0); // amount to change age, athletics, education, karma, money.
@@ -159,6 +157,8 @@ public class YoungAdultStage {
 				highGrad = true;
 			}
 		}
+		
+		Control.Print(("Starting Young Adulthood"));
 
 		// starting college admissions event
 		Main.positiveStats = Control.setStatArray(limit, 0, 0, 100, -100); // increase karma and decrease money
@@ -190,7 +190,7 @@ public class YoungAdultStage {
 		 * SCENARIO IF DROPPED OUT OF HIGH SCHOOL
 		 * 
 		 */
-		
+	
 		if (dropped) {
 
 			// kicked out event
@@ -626,7 +626,7 @@ public class YoungAdultStage {
 		/*
 		 * END OF YOUNG ADULT MESSAGES
 		 */
-		
+	
 		if (collegeGrad) {
 			Control.Print("You pack all of your things out of your college house... reminiscing on all the memories");
 			Control.Print("As you drive away you wonder where you will go and what you will do");
