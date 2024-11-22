@@ -189,9 +189,7 @@ public class HighschoolStage {
                 "You did not apply to college.", // Message if No
                 Main.negativeStats, // Stat changes if No
                 player); // End sports event
-        if(Main.playerChoice == true) {
-            collegeApplied = true;
-        }
+     
     
         
         
