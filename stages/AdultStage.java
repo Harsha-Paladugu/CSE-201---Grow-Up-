@@ -4,7 +4,7 @@ public class AdultStage {
         Control.Print("Starting Adult Stage");
 
         // Choice to get a job
-        Main.positiveStats = Control.setStatArray(1, 0, 0, 0, 5000); // Increase money
+        Main.positiveStats = Control.setStatArray(1, 0, 0, 0, 1000); // Increase money
         Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0); // No stat change if declined
 
         Main.playerChoice = Control.choiceEventHandler(
@@ -17,7 +17,7 @@ public class AdultStage {
                 player);
 
         // Choice to go back to college
-        Main.positiveStats = Control.setStatArray(-4, 0, 50, 0, -2000); // Decrease age, increase education, decrease money
+        Main.positiveStats = Control.setStatArray(-4, 0, 50, 0, -200); // Decrease age, increase education, decrease money
         Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0); // No change if declined
 
         Main.playerChoice = Control.choiceEventHandler(
@@ -34,7 +34,7 @@ public class AdultStage {
         }
 
         // Start a family
-        Main.positiveStats = Control.setStatArray(1, 0, 0, 30, -3000); // Increase karma, decrease money
+        Main.positiveStats = Control.setStatArray(1, 0, 0, 30, -300); // Increase karma, decrease money
         Main.negativeStats = Control.setStatArray(1, 0, 0, -10, 0); // Decrease karma if declined
 
         Control.choiceEventHandler(
@@ -47,7 +47,7 @@ public class AdultStage {
                 player);
 
         // Invest money
-        Main.positiveStats = Control.setStatArray(1, 0, 0, 0, -1000); // Decrease money
+        Main.positiveStats = Control.setStatArray(1, 0, 0, 0, 100); // Increase money
         Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0); // No change if declined
 
         Control.choiceEventHandler(
@@ -88,8 +88,8 @@ public class AdultStage {
         }
 
         // Medical care
-        Main.positiveStats = Control.setStatArray(1, 0, 0, 0, -500); // Decrease money
-        Main.negativeStats = Control.setStatArray(1, 0, 0, -10, 0); // Decrease karma if not cared for
+        Main.positiveStats = Control.setStatArray(1, 0, 0, 0, -50); // Decrease money
+        Main.negativeStats = Control.setStatArray(1, 0, 0, -10, 20); // Decrease karma if not cared for
 
         Control.choiceEventHandler(
                 "You are feeling unwell and may need medical care.", 
@@ -101,8 +101,8 @@ public class AdultStage {
                 player);
 
         // Vacation with family
-        Main.positiveStats = Control.setStatArray(1, 0, 0, 20, -1000); // Increase karma, decrease money
-        Main.negativeStats = Control.setStatArray(1, 0, 0, -10, 0); // Decrease karma if declined
+        Main.positiveStats = Control.setStatArray(1, 0, 0, 20, -100); // Increase karma, decrease money
+        Main.negativeStats = Control.setStatArray(1, 0, 0, -10, 20); // Decrease karma if declined
 
         Control.choiceEventHandler(
                 "Your family suggests going on a vacation.", 

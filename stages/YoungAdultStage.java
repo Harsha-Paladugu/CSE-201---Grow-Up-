@@ -14,8 +14,8 @@ public class YoungAdultStage {
 		int limit = 1000;
 
 		// Start getting into college event
-		Main.positiveStats = Control.setStatArray(limit, 0, 0, 0, 0);
-		Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0); // amount to change age, athletics, education, karma, money.
+		Main.positiveStats = Control.setStatArray(limit, 0, 20, 10, -50);
+		Main.negativeStats = Control.setStatArray(1, 0, -10, -5, 0); // amount to change age, athletics, education, karma, money.
 
 		if (player.education.getStatValue() > 50) { // if smart enough run event
 			Control.choiceEventHandler("You are smart enough to apply for colleges!", // Initial message
@@ -33,7 +33,7 @@ public class YoungAdultStage {
 		} // end getting into college event
 
 		// Starting drop out event
-		Main.positiveStats = Control.setStatArray(limit, 0, -10000, -10, 0);  //decrease karma and education
+		Main.positiveStats = Control.setStatArray(limit, 0, -50, -10, 0);  //decrease karma and education
 		Main.negativeStats = Control.setStatArray(1, 0, 10, 5, 0); // increase education and karma
 
 		Control.choiceEventHandler("School seems to be getting to you...", // Initial message
@@ -51,7 +51,7 @@ public class YoungAdultStage {
 
 		// starting graduation test event
 		Main.positiveStats = Control.setStatArray(1, 0, limit, 0, 0); // increase education for counting
-		Main.negativeStats = Control.setStatArray(1, 0, -20, 0, 0); // decrease education
+		Main.negativeStats = Control.setStatArray(1, 0, -5, 0, 0); // decrease education
 
 		if (!dropped) { // if the player did not drop out of highschool
 			int tests = 0; // test counter to determine if graduating
@@ -162,7 +162,7 @@ public class YoungAdultStage {
 
 		// starting college admissions event
 		Main.positiveStats = Control.setStatArray(limit, 0, 0, 100, -100); // increase karma and decrease money
-		Main.negativeStats = Control.setStatArray(1, 0, 0, -10, 100); // increase money and decrease karma
+		Main.negativeStats = Control.setStatArray(1, 0, 0, -5, 100); // increase money and decrease karma
 
 		if (dropped) {
 			Control.Print("Since you did not graduate highschool, you are now a janitor");
@@ -194,8 +194,8 @@ public class YoungAdultStage {
 		if (dropped) {
 
 			// kicked out event
-			Main.positiveStats = Control.setStatArray(1, 0, 0, 100, -100);
-			Main.negativeStats = Control.setStatArray(limit, 0, 0, -10, 100);
+			Main.positiveStats = Control.setStatArray(1, 0, 0, 10, -25);
+			Main.negativeStats = Control.setStatArray(limit, 0, 0, -10, 0);
 
 			Control.Print("You're parents are extremely disappointed in you...");
 			Control.choiceEventHandler("They confront you about dropping out of highschool and being a janitor", // Initial message
@@ -296,7 +296,7 @@ public class YoungAdultStage {
 						Main.negativeStats, // Stat changes if no
 						player);
 
-				Main.positiveStats = Control.setStatArray(limit, 0, -25, -20, -100);
+				Main.positiveStats = Control.setStatArray(limit, 0, -25, -20, -20);
 				Main.negativeStats = Control.setStatArray(1, 0, 10, 5, 0);
 
 				Control.choiceEventHandler(
@@ -323,7 +323,7 @@ public class YoungAdultStage {
 			}
 		}
 
-		Main.positiveStats = Control.setStatArray(limit, 0, -25, -20, -100);
+		Main.positiveStats = Control.setStatArray(limit, 0, -25, -20, 200);
 		Main.negativeStats = Control.setStatArray(1, 0, 10, 5, 0);
 
 		if (highGrad && !inCollege || kickedOut) {
@@ -349,7 +349,7 @@ public class YoungAdultStage {
 		
 		Control.Print("The next day");
 		
-		Main.positiveStats = Control.setStatArray(limit, 0, -25, -20, -100);
+		Main.positiveStats = Control.setStatArray(limit, 0, -25, -20, -10);
 		Main.negativeStats = Control.setStatArray(1, 0, 10, 5, 0);
 
 		Control.choiceEventHandler(
@@ -470,7 +470,7 @@ public class YoungAdultStage {
 
 			// starting random drug event
 			if (!Event.eventOccuring(player, 50)) {
-				Main.positiveStats = Control.setStatArray(limit, 0, -25, -20, -100);
+				Main.positiveStats = Control.setStatArray(limit, 0, -25, -20, -10);
 				Main.negativeStats = Control.setStatArray(1, 0, 10, 5, 0);
 
 				Control.choiceEventHandler(

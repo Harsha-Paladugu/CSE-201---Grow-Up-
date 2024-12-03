@@ -1,158 +1,155 @@
 public class KindergartenStage {
-    
+
     public static void playKindergartenStage(Player player) {
-            
-        Control.Print("Starting Kindergarten");
-    
+
+        Control.Print("Welcome to Kindergarten! It's time to make some big choices.");
+
         // Start friendship event
-        Main.positiveStats = Control.setStatArray(1,0,0,10,0);
-        Main.negativeStats = Control.setStatArray(1, 0, 0, -10, 0); // amount to change age, athletics, education, karma, money.
-        
-        Main.playerChoice = Control.choiceEventHandler( // collect playerChoice for lunch event
-                "It's the first day of kindergarten, you see many people in your class.", // Initial message
-                "Do you want to make a friend?", // Prompt Player Yes or No
-                "You made a friend!", // Message if Yes
-                Main.positiveStats, // Stat changes if Yes
-                "You kept to yourself.", // Message if No
-                Main.negativeStats, // Stat changes if No
-                player); // End friendship event
-    
+        Main.positiveStats = Control.setStatArray(1, 0, 0, 10, 0);
+        Main.negativeStats = Control.setStatArray(1, 0, 0, -10, 0);
+
+        Main.playerChoice = Control.choiceEventHandler(
+                "It's your first day of kindergarten, and the classroom is full of new faces.",
+                "Do you want to introduce yourself and make a friend?",
+                "You made a new friend! It's a great start to your school experience.",
+                Main.positiveStats,
+                "You decided to keep to yourself for now.",
+                Main.negativeStats,
+                player);
+
         // Start lunch event
         Main.positiveStats = Control.setStatArray(1, 0, 0, 20, 0);
         Main.negativeStats = Control.setStatArray(1, 0, 0, -10, 0);
-        
-        if(Main.playerChoice == true) {
-            
+
+        if (Main.playerChoice) {
             Control.choiceEventHandler(
-                    "You are eating lunch with your friend, he asks to try your pretzels.",
-                    "Do you want to give him some of your pretzels?",
-                    "You gave your friend some of your pretzels.",
+                    "During lunch, your new friend asks for some of your pretzels.",
+                    "Do you want to share your pretzels?",
+                    "You shared your pretzels, and your friendship grew stronger.",
                     Main.positiveStats,
-                    "You did not give your friend any pretzels.",
+                    "You chose not to share. Your friend seemed a bit disappointed.",
                     Main.negativeStats,
                     player);
         } else {
             player.age.changeStat(Main.positiveStats[0]);
-        } // End lunch event
-        
+        }
+
         // Start random fight event
         Main.positiveStats = Control.setStatArray(1, 0, 0, -10, 0);
         Main.negativeStats = Control.setStatArray(1, 0, 0, 10, 0);
-        
+
         Control.randomEventHandler(
-                "During recess, a kid bumps into you.", // Initial Message
-                "You stood up for yourself and got into a small fight.", // Message if event happens
-                Main.positiveStats, // Stat changes if event happens
-                "You let it go and avoided any trouble.", // Message if event does not happen
-                Main.negativeStats, // Stat changes if event does not happen
-                50, // probability
-                player); // End random fight event 
-        
+                "At recess, a kid bumps into you while playing.",
+                "You decided to stand up for yourself, and it turned into a small fight.",
+                Main.positiveStats,
+                "You let it slide, avoiding any trouble.",
+                Main.negativeStats,
+                50,
+                player);
+
         // Start sports event
         Main.positiveStats = Control.setStatArray(1, 25, 0, 0, 0);
         Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0);
-        
+
         Control.choiceEventHandler(
-                "The school is looking for students to join the football team.", // Initial message
-                "Do you want to sign up for football?", // Prompt for Yes/No choice
-                "You joined the football team! Your athletic skills improved.", // Message if Yes
-                Main.positiveStats, // Stat changes if Yes
-                "You decided not to join the football team.", // Message if No
-                Main.negativeStats, // Stat changes if No
-                player); // End sports event
-        
+                "The school is forming a football team and is looking for players.",
+                "Do you want to join the football team?",
+                "You joined the football team! Your athletic skills are on the rise.",
+                Main.positiveStats,
+                "You decided not to join. Football just isn’t your thing.",
+                Main.negativeStats,
+                player);
+
         // Start chores event
         Main.positiveStats = Control.setStatArray(1, 0, 0, 10, 50);
         Main.negativeStats = Control.setStatArray(1, 0, 0, -5, 0);
 
         Main.playerChoice = Control.choiceEventHandler(
-                "Your parents ask if you can help with chores around the house.", // Initial message
-                "Do you want to help with the chores?", // Prompt Yes or No
-                "You helped with the chores and earned some allowance!", // Message if Yes
-                Main.positiveStats, // Stat changes if Yes
-                "You chose not to help with the chores.", // Message if No
-                Main.negativeStats, // Stat changes if No
-                player); // End chores event
-        
-        // Start pet event
-        Main.positiveStats = Control.setStatArray(1, 0, 0, 15, -30); // Increase karma and decrease money if they get a pet
-        Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0); // No change if they choose not to
-
-        if (player.money.getStatValue() > 30) { // Run event if player has enough money to adopt a pet
-            
-            Control.choiceEventHandler(
-                "You have the opportunity to adopt a pet.", // Initial message
-                "Do you want to get a pet?", // Prompt for Yes or No
-                "You adopted a pet! It brings you joy but comes with expenses.", // Message if Yes
-                Main.positiveStats, // Stat changes if Yes
-                "You decided not to get a pet.", // Message if No
-                Main.negativeStats, // Stat changes if No
+                "Your parents ask if you can help with some chores at home.",
+                "Do you want to help with the chores?",
+                "You helped out and earned some allowance money!",
+                Main.positiveStats,
+                "You chose not to help. Your parents weren’t thrilled.",
+                Main.negativeStats,
                 player);
-        } // End pet event
-            
+
+        // Start pet event
+        Main.positiveStats = Control.setStatArray(1, 0, 0, 15, -30);
+        Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0);
+
+        if (player.money.getStatValue() > 30) {
+            Control.choiceEventHandler(
+                    "You have enough money to adopt a pet. A furry friend could be yours!",
+                    "Do you want to adopt a pet?",
+                    "You adopted a pet! It’s a joy to have, but it’s not cheap.",
+                    Main.positiveStats,
+                    "You decided not to adopt a pet for now.",
+                    Main.negativeStats,
+                    player);
+        }
+
         // Start pop quiz random event
         Main.positiveStats = Control.setStatArray(1, 0, 20, 0, 0);
         Main.negativeStats = Control.setStatArray(1, 0, -5, 0, 0);
-        
-        if(Event.eventOccuring(player, 100)) {
-            
+
+        if (Event.eventOccuring(player, 100)) {
             Control.customEventHandler(
-                "Your teacher has given a pop quiz.",
-                "What is 2 + 3?",
-                "5",
-                "You aced the quiz.",
-                Main.positiveStats,
-                "You failed the quiz.", 
-                Main.negativeStats, 
-                player);
-        } // end pop quiz random event
-        
-        // start divorce random event
+                    "Your teacher announces a surprise pop quiz.",
+                    "What is 2 + 3?",
+                    "5",
+                    "You nailed it and impressed your teacher!",
+                    Main.positiveStats,
+                    "You missed the answer. Better luck next time.",
+                    Main.negativeStats,
+                    player);
+        }
+
+        // Start divorce random event
         Main.positiveStats = Control.setStatArray(1, 0, 0, -5, 0);
         Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0);
+
         Control.randomEventHandler(
-                "", // no initial message
-                "Your parents decided to get a divorce.", // message if event happens
-                Main.positiveStats, // stat changes if event happens
-                "", // no message if event does not happen
-                Main.negativeStats, // stat changes if event does not happen
-                50, // probability of event happening
-                player); // end divorce event
-        
-        // start injury random event
-        Control.Print("You are walking down the street and see a car coming towards you.");      
-        if(Event.eventOccuring(player, 100)) {
-            Control.Print("The car hits you and breaks your leg");
+                "",
+                "Your parents decided to get a divorce. Life feels different now.",
+                Main.positiveStats,
+                "",
+                Main.negativeStats,
+                50,
+                player);
+
+        // Start injury random event
+        Control.Print("You're walking down the street when a car suddenly speeds toward you.");
+        if (Event.eventOccuring(player, 100)) {
+            Control.Print("The car hit you, breaking your leg.");
             player.athletics.resetStat();
         } else {
-            Control.Print("The car was able to stop just in time.");
-        } // end injury random event
-        
+            Control.Print("The car screeched to a stop just in time.");
+        }
+
         // Start disease and death random event
-        Main.positiveStats = Control.setStatArray(-100, 0, 0, 0, 0); // No stat changes if player survives
+        Main.positiveStats = Control.setStatArray(-100, 0, 0, 0, 0);
         Main.negativeStats = Control.setStatArray(-100, 0, 0, 0, 0);
 
         Control.randomEventHandler(
-                "You start feeling sick...", // Initial message
-                "You caught a deadly disease and passed away.", // Message if the event happens
-                Main.positiveStats, // Stat changes if the event happens
-                "You recovered quickly and felt fine.", // Message if the event does not happen
-                Main.negativeStats, // Stat changes if the event does not happen
-                5, // probability of event happening
-                player); // End disease and death event
-        
-        // Start work even
-        Main.positiveStats = Control.setStatArray(1, 5, 0, 5, 30); // Increase age and money if the player works
-        Main.negativeStats = Control.setStatArray(1, 0, 0, -5, 0); // Increase age only if the player does not work
+                "You start feeling sick...",
+                "The illness was serious, and you didn’t survive.",
+                Main.positiveStats,
+                "You made a full recovery and felt fine afterward.",
+                Main.negativeStats,
+                1,
+                player);
+
+        // Start work event
+        Main.positiveStats = Control.setStatArray(1, 5, 0, 5, 30);
+        Main.negativeStats = Control.setStatArray(1, 0, 0, -5, 0);
 
         Main.playerChoice = Control.choiceEventHandler(
-                "You have the opportunity to get a job delivering newspapers", // Initial message
-                "Do you want to work?", // Prompt for Yes or No
-                "You worked hard and earned some money!", // Message if Yes
-                Main.positiveStats, // Stat changes if Yes
-                "You chose to relax instead of working.", // Message if No
-                Main.negativeStats, // Stat changes if No
-                player); // End work event 
+                "You have an opportunity to deliver newspapers and earn some extra cash.",
+                "Do you want to take the job?",
+                "You took the job and worked hard, earning some money.",
+                Main.positiveStats,
+                "You chose not to work and spent your time relaxing instead.",
+                Main.negativeStats,
+                player);
     }
-    
 }
