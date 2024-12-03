@@ -171,28 +171,14 @@ public class HighschoolStage {
         
         Control.choiceEventHandler(
                 "You are very tired of walking everywhere", // Initial message
-                "Do you want to buy youe first car for $3000?", // Prompt for Yes/No choice
+                "Do you want to buy your first car for $3000?", // Prompt for Yes/No choice
                 "Vroom!", // Message if Yes
                 Main.positiveStats, // Stat changes if Yes
                 "You still have to walk.", // Message if No
                 Main.negativeStats, // Stat changes if No
                 player); // End sports event
         
-        Main.positiveStats = Control.setStatArray(1, 0, 0, 0, 0);
-        Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0);
-        
-        Main.playerChoice = Control.choiceEventHandler(
-                "College applications are due soon.", // Initial message
-                "Do you want to apply?", // Prompt for Yes/No choice
-                "You applied to college", // Message if Yes
-                Main.positiveStats, // Stat changes if Yes
-                "You did not apply to college.", // Message if No
-                Main.negativeStats, // Stat changes if No
-                player); // End sports event
      
-    
-        
-        
         Main.positiveStats = Control.setStatArray(1, 0, 20, 0, 0);
         Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0);
         
