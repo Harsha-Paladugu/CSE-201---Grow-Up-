@@ -11,7 +11,7 @@ public class HighschoolStage {
         
         
         // Start sports event
-        if(player.athletics.getStatValue() > 10) {
+        if(player.athletics.getStatValue() >= 5) {
         Main.positiveStats = Control.setStatArray(1, 25, 0, 0, 0);
         Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0);
         
