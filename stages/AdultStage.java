@@ -17,12 +17,12 @@ public class AdultStage {
                 player);
 
         // Choice to go back to college
-        Main.positiveStats = Control.setStatArray(-4, 0, 50, 0, -200); // Decrease age, increase education, decrease money
+       Main.positiveStats = Control.setStatArray(-4, 0, 50, 0, -200); // Decrease age, increase education, decrease money
         Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0); // No change if declined
 
         Main.playerChoice = Control.choiceEventHandler(
-                "You have the chance to go back to college.", 
-                "Do you want to go back to college?", 
+                "You have the chance to go grad school", 
+                "Do you want to go back to grad school?", 
                 "You went back to college and became a doctor!", 
                 Main.positiveStats, 
                 "You decided not to go back to college.", 
@@ -73,7 +73,7 @@ public class AdultStage {
                 player);
 
         // Gamble money
-        Main.positiveStats = Control.setStatArray(1, 0, 0, 0, player.money.getStatValue() * 10); // Multiply money by 10
+        Main.positiveStats = Control.setStatArray(1, 0, 0, 0, 1000); // Multiply money by 10
         Main.negativeStats = Control.setStatArray(1, 0, 0, 0, -player.money.getStatValue()); // Lose all money
 
         if (Event.eventOccuring(player, 50)) { // 50% chance to win

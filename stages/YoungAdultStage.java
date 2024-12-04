@@ -5,8 +5,8 @@ public class YoungAdultStage {
 
 		boolean dropped = false;
 		boolean kickedOut = false;
-		boolean applied = false;
-		boolean inCollege = false;
+		boolean applied = true;
+		boolean inCollege = true;
 		boolean highGrad = false;
 		boolean collegeGrad = false;
 		boolean house = false;
@@ -17,7 +17,7 @@ public class YoungAdultStage {
 		Main.positiveStats = Control.setStatArray(limit, 0, 20, 10, -50);
 		Main.negativeStats = Control.setStatArray(1, 0, -10, -5, 0); // amount to change age, athletics, education, karma, money.
 
-		if (player.education.getStatValue() > 50) { // if smart enough run event
+		// if smart enough run event
 			Control.choiceEventHandler("You are smart enough to apply for colleges!", // Initial message
 					"Would you like to apply for college?", // Prompt yes or no
 					"Congratualtion! You got into your dream college!", // Message if yes
@@ -25,7 +25,6 @@ public class YoungAdultStage {
 					"You did not apply for colleges...", // Message if no
 					Main.negativeStats, // Stat changes if no
 					player); 
-		}
 
 		if (player.age.getStatValue() > limit) {
 			applied = true; // If they put yes then applied is true
@@ -50,8 +49,8 @@ public class YoungAdultStage {
 		} // end high school drop out event
 
 		// starting graduation test event
-		Main.positiveStats = Control.setStatArray(1, 0, limit, 0, 0); // increase education for counting
-		Main.negativeStats = Control.setStatArray(1, 0, -5, 0, 0); // decrease education
+		Main.positiveStats = Control.setStatArray(0, 0, limit, 0, 0); // increase education for counting
+		Main.negativeStats = Control.setStatArray(0, 0, -5, 0, 0); // decrease education
 
 		if (!dropped) { // if the player did not drop out of highschool
 			int tests = 0; // test counter to determine if graduating
@@ -465,8 +464,8 @@ public class YoungAdultStage {
 					Main.negativeStats, // Stat changes if no
 					player);
 
-			if (player.education.getStatValue() < 0)
-				inCollege = false;
+			/*if (player.education.getStatValue() < 0)
+				inCollege = false; */
 
 			// starting random drug event
 			if (!Event.eventOccuring(player, 50)) {
@@ -538,8 +537,8 @@ public class YoungAdultStage {
 			}
 
 			Control.customEventHandler("It's your final finals week!! The subject is history!", // Initial message
-					"Who was the first president to be asassinated? (full name)'", // Prompt for answer
-					"Abraham Lincoln", // The answer
+					"Who was the first president to be asassinated? (last name)'", // Prompt for answer
+					"Lincoln", // The answer
 					"You get your history test back and ....... you passed!", // Message if correct
 					Main.positiveStats, // stat changes if correct
 					"You get your history test back and ....... you failed!", // Message if incorrect
@@ -569,32 +568,10 @@ public class YoungAdultStage {
 				player.education.changeStat(-limit + 1); // change education to regular
 			}
 
+			tests = 5;
 			if (tests == 0) {
 				System.out.println("You didn't pass any of your finals... so uh.. you did not graduate");
 				inCollege = false;
-			} else if (tests == 1) {
-				Control.Print(
-						"You only passed one of your finals... but luckily one of your professors curved the test!");
-				Control.Print("This means you passed!");
-				Control.Print("You walk awkwardly to grab your degree and trip down the stairs");
-				System.out.println("******************************************");
-				System.out.println("*                                        *");
-				System.out.println("*            COLLEGE DEGREE              *");
-				System.out.println("*                                        *");
-				System.out.println("*          This certifies that           *");
-				System.out.println("*                                        *");
-				System.out.println("*                  YOU                   *");
-				System.out.println("*                                        *");
-				System.out.println("*   Have successfully completed the      *");
-				System.out.println("*   requirements for the degree of:      *");
-				System.out.println("*                                        *");
-				System.out.println("*         	  SOMETHING!!	             *");
-				System.out.println("*                                        *");
-				System.out.println("*                                        *");
-				System.out.println("*        Authorized Signature:           *");
-				System.out.println("*          		TEAM B!      			 *");
-				System.out.println("*                                        *");
-				System.out.println("******************************************");
 			} else if (tests >= 2) {
 				Control.Print("Congratulations!! You can graduate from college");
 				Control.Print("You walk confidently to get your degree");

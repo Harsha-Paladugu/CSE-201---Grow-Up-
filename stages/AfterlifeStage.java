@@ -1,7 +1,7 @@
 public class AfterlifeStage {
     public static void playAfterlifeStage(Player player){
         Control.Print("You passed away at "+player.age.getStatValue()+" years old." +
-                "\nWhen you died you had "+player.athletics.getStatName()+" athletics." +
+                "\nWhen you died you had "+player.athletics.getStatValue()+" athletics." +
                 "\nYou had "+player.education.getStatValue()+" education." +
                 "\nYou had "+player.karma.getStatValue()+" karma." +
                 "+\nAnd you had "+player.money.getStatValue()+" money");

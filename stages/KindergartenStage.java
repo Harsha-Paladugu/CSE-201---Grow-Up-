@@ -127,8 +127,8 @@ public class KindergartenStage {
         }
 
         // Start disease and death random event
-        Main.positiveStats = Control.setStatArray(-100, 0, 0, 0, 0);
-        Main.negativeStats = Control.setStatArray(-100, 0, 0, 0, 0);
+        Main.positiveStats = Control.setStatArray(1, 0, 0, 0, 0);
+        Main.negativeStats = Control.setStatArray(1, 0, 0, 0, 0);
 
         Control.randomEventHandler(
                 "You start feeling sick...",
@@ -136,7 +136,7 @@ public class KindergartenStage {
                 Main.positiveStats,
                 "You made a full recovery and felt fine afterward.",
                 Main.negativeStats,
-                1,
+                0,
                 player);
 
         // Start work event

@@ -6,6 +6,7 @@
 public class RetirementStage {
     public static void playRetirementStage(Player player){
         // Determine the player's retirement status
+        player.age.changeStat(30);
         boolean isRetired = false;
         
         Control.Print("Starting Retirement");
@@ -22,15 +23,15 @@ public class RetirementStage {
         // Two different events for if the player is retired or not
         if (isRetired) {
             // Senior center event
-            Main.positiveStats = Control.setStatArray(1, 0, 0, 10, 0); // amount to change age, athletics, education, karma, money.
-            Main.negativeStats = Control.setStatArray(1, 0, 0, -20, 50);
+            Main.positiveStats = Control.setStatArray(1, 0, 0, -20, 50); // amount to change age, athletics, education, karma, money.
+            Main.negativeStats = Control.setStatArray(1, 0, 0, 10, 0);
             
             Main.playerChoice = Control.choiceEventHandler(
                     "Your bingo rival, Ethel, has been winning too much", 
                     "Do you cheat to win?", 
-                    "You may hate Ethel, but you are no cheater!",
+                    "Serves her right! And you took home the $50 pot!",
                     Main.positiveStats, 
-                    "Serves her right! And you took home the $50 pot!", 
+                    "You may hate Ethel, but you are no cheater!", 
                     Main.negativeStats, 
                     player);
         } else {

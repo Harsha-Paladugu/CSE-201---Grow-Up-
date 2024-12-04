@@ -121,7 +121,7 @@ public class HighschoolStage {
         // Random football injury event if playing sports
         if (playingSports) {
             Main.positiveStats = Control.setStatArray(1, 10, 0, 0, 0);
-            Main.negativeStats = Control.setStatArray(1, -10, 0, 0, 0);
+            Main.negativeStats = Control.setStatArray(1, player.athletics.getStatValue()-player.athletics.getStatValue(), 0, 0, 0);
             Control.randomEventHandler(
                 "You took a hard hit during a football game.",
                 "It only left a scratch.",
@@ -162,7 +162,7 @@ public class HighschoolStage {
             player);
 
         // College application
-        Main.positiveStats = Control.setStatArray(1, 0, 15, 0, 0);
+    /*    Main.positiveStats = Control.setStatArray(1, 0, 15, 0, 0);
         Main.negativeStats = Control.setStatArray(1, 0, -5, 0, 0);
 
         Control.choiceEventHandler(
@@ -172,6 +172,6 @@ public class HighschoolStage {
             Main.positiveStats,
             "You decided not to apply to college.",
             Main.negativeStats,
-            player);
+            player); */
     }
 }
